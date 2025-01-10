@@ -19,7 +19,26 @@ get_top_cpu_processes() {
     ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n 6
 }
 
-get_cpu_usage
-get_top_cpu_processes
-get_memory_usage
-get_disk_usage
+get_extra_stats() {
+    echo "OS Version:"
+    lsb_release -a 2>/dev/null || cat /etc/os-release
+
+    echo "uptime:"
+    uptime
+
+    echo "Load Average:"
+    cat /proc/loadavg
+
+    echo "Logged in users:"
+    who
+}
+
+main() {
+    get_cpu_usage
+    get_top_cpu_processes
+    get_memory_usage
+    get_disk_usage
+    get_extra_stats
+}
+
+main
