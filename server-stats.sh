@@ -2,7 +2,7 @@
 
 get_cpu_usage() {
     echo "CPU Usage:"
-    mpstat | awk '$12 ~ /[0-9.]+/ { print 100 - $12 "% used" }'
+    mpstat 1 3 | awk '$12 ~ /[0-9.]+/ { sum += 100 - $12; count++ } END { if (count > 0) print sum/count "% used" }'
 }
 
 get_memory_usage() { 
