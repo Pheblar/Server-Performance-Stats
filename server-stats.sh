@@ -6,8 +6,7 @@
  }
 
 get_memory_usage() { 
-    echo "Memory Usage:"
-    free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
+    free -m | awk 'NR==2{printf "Memory Usage:\n%s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
 }
 
 get_memory_usage
