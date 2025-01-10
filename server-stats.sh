@@ -14,6 +14,12 @@ get_disk_usage() {
     df -h --total | awk 'END{print "Used: "$3", Free: "$4", Usage: "$5}'
 }
 
-get_memory_usage
+get_top_cpu_processes() {
+    echo "Top 5 Processes by CPU Usage:"
+    ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n 6
+}
+
 get_cpu_usage
+get_top_cpu_processes
+get_memory_usage
 get_disk_usage
